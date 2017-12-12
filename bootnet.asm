@@ -3,7 +3,7 @@
 
 format	PE console
 
-stack 10000h    ;taille de la pile souhaité
+stack 10000h    ;taille de la pile souhaitÃ©
 
 section '.text' code readable executable
 
@@ -61,7 +61,7 @@ je part_tftp
 
 cmp byte[zt_bootp],01  ;bootrequest
 jne autre_type
-cmp byte[htype],01 ;type de réseau
+cmp byte[htype],01 ;type de rÃ©seau
 jne part_tftp
 cmp byte[hlen],06  ;adresse materielle
 jne part_tftp
@@ -236,7 +236,7 @@ jmp boucle
 
 
 lire_fichier_tftp:
-;verifie que le mode de transmission demandé soit bien "octet"
+;verifie que le mode de transmission demandÃ© soit bien "octet"
 mov ebx,zt_tftp+2
 boucle_verif_octet:
 cmp byte[ebx],0
@@ -347,7 +347,7 @@ mov dword[nb_envoie],0
 jmp env_bloc
 
 
-erreur_fichier_nt:          ;erreur: fichier non trouvé
+erreur_fichier_nt:          ;erreur: fichier non trouvÃ©
 mov esi,tftp_erreur_1
 mov ecx,tftp_erreur_2-tftp_erreur_2
 mov dx,[port_client_tftp]
@@ -360,7 +360,7 @@ jmp boucle
 
 
 erreur_mode:
-;§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+;Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§Â§
 
 
 ecrire_fichier_tftp:          ;erreur: l'ecriture est interdite
@@ -418,7 +418,7 @@ jmp env_bloc
 
 
 ack_tftp:
-xor eax,eax             ;compare si l'ack correspond au dernier bloc envoyé si non erreur
+xor eax,eax             ;compare si l'ack correspond au dernier bloc envoyÃ© si non erreur
 mov ah,[zt_tftp+2]
 mov al,[zt_tftp+3]
 cmp eax,[dernier_bloc]
@@ -471,7 +471,7 @@ jmp boucle
 
 
 
-fin_erreur_envoie:     ;la transmission ne s'est pas effectué correctement
+fin_erreur_envoie:     ;la transmission ne s'est pas effectuÃ© correctement
 mov byte[mode_tftp],0
 
 mov ebx,[handle_fichier]
@@ -482,7 +482,7 @@ call affmsg
 jmp boucle
 
 
-fin_envoie_fichier:    ;le fichier a été envoyé on se remet a écouter les requetes 
+fin_envoie_fichier:    ;le fichier a Ã©tÃ© envoyÃ© on se remet a Ã©couter les requetes 
 mov byte[mode_tftp],0
 
 mov ebx,[handle_fichier]
@@ -495,7 +495,7 @@ jmp boucle
 
 
 
-erreur_tftp:    ;affiche que l'on a reçu un message d'erreur
+erreur_tftp:    ;affiche que l'on a reÃ§u un message d'erreur
 ;*****************
 jmp boucle
 
@@ -531,14 +531,14 @@ include "nlg_win.inc"
 
 
 msg_err1:
-db "vous devez spécifier l'IP de la carte du réseau sur laquel vous souhaitez uttiliser le serveur",13,10,0
+db "vous devez spÃ©cifier l'IP de la carte du rÃ©seau sur laquel vous souhaitez uttiliser le serveur",13,10,0
 
 msg_err2:
 db "erreur de lecture du fichier de configuration",13,10,0
 
 
 initok:
-db "serveur BOOTP et TFTP activé",10,13,0
+db "serveur BOOTP et TFTP activÃ©",10,13,0
 
 
 
@@ -549,10 +549,10 @@ db 0,0,":",0,0,":",0,0,":",0,0,":",0,0,":",0,0,13,10,0
 
 
 impossible:
-db "impossible de satisfaire la demande car aucune correspondance n'as été trouvé dans la table",13,10,0
+db "impossible de satisfaire la demande car aucune correspondance n'as Ã©tÃ© trouvÃ© dans la table",13,10,0
 
 autres:
-db "un type de requete non reconnue a été reçu",13,10,0
+db "un type de requete non reconnue a Ã©tÃ© reÃ§u",13,10,0
 
 msg_envoie_tftp1:
 db "debut d'envoie du fichier ",0
@@ -564,7 +564,7 @@ msg_envoie_tftp3:
 db "fin du transfert de fichier",13,10,0
 
 msg_envoie_tftp4:
-db "le fichier n'as pas put être envoyé correctement",13,10,0
+db "le fichier n'as pas put Ãªtre envoyÃ© correctement",13,10,0
 
 stop:
 db "*",0
@@ -629,19 +629,19 @@ db "bootnet.txt",0
 
 
 tftp_erreur_0:
-db 0,5,0,0,"erreur indéfinis",0
+db 0,5,0,0,"erreur indÃ©finis",0
 tftp_erreur_1:
-db 0,5,0,1,"fichier non trouvé",0
+db 0,5,0,1,"fichier non trouvÃ©",0
 tftp_erreur_2:
 db 0,5,0,2,"interdiction d'acces",0
 tftp_erreur_3:
 db 0,5,0,3,"disque plein",0
 tftp_erreur_4:
-db 0,5,0,4,"opération TFTP interdite",0
+db 0,5,0,4,"opÃ©ration TFTP interdite",0
 tftp_erreur_5:
 db 0,5,0,5,"ID de transfert inconnue",0
 tftp_erreur_6:
-db 0,5,0,6,"le fichier existe déja",0
+db 0,5,0,6,"le fichier existe dÃ©ja",0
 tftp_erreur_7:
 db 0,5,0,7,"utilisateur inconnue",0
 tftp_erreur_8:
@@ -653,24 +653,7 @@ tftp_erreur_8:
 
 zt_bootp:   ;1=bootrequest 2=bootreply
 db 0          
-htype:      ;type d'adresse materiel
-db 0          
-hlen:       ;longeur de l'adresse materiel
-db 0         
-hops:       ;uttilsé par les passerelles intermédiaires
-db 0
-xid:        ;ID de la requete
-dd 0
-secs:       ;seconde écoulé depuis le début de la tentative d'amorçage
-dw 0
-flags:      ;flag divers
-dw 0
-ciaddr:     ;adresse IP du client si il la connait
-dd 0
-yiaddr:     ;adresse IP du client determiné par le serveur
-dd 0
-siaddr:     ;adresse ip du serveur (nous donc)
-dd 0
+htype
 giaddr:     ;adresse ip de la passerelle
 dd 0
 chaddr:     ;adresse materielle du client
@@ -678,46 +661,37 @@ dd 0,0,0,0
 sname:
 dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;64 octets, nom du serveur
 fichier_boot:
-dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;128 octets, nom du programme d'amorçage
+dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;128 octets, nom du programme d'amorÃ§age
 vend:
-dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;64 octets, zone optionnelle determiné par le constructeur
-dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;128. octets supplémentaire pour pouvoir satisfaire une éventuelle requete DHCP
+dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;64 octets, zone optionnelle determinÃ© par le constructeur
+dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;128. octets supplÃ©mentaire pour pouvoir satisfaire une Ã©ventuelle requete DHCP
 dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 
 table_adresse_mac:
-db 000h,00Ch,076h,0CDh,08Bh,009h
-db 192,168,1,2
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
+db 000h,00Ch,076h,0CDh,08Bh,009h            ;adresse mac de la machine que l'on souhaite faire booter
+db 192,168,1,2                              ;adresse ip provisoirement utilisÃ© par la machine qui doit booter
+db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0   ;nom du fichier qui vas Ãªtre chargÃ© dans la machine cible en 7C00h
 
-db 000h,00Ch,076h,0CDh,08Bh,009h
-db 192,168,1,3
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
-db 000h,01Eh,0ECh,06bh,0A3h,0E6h  ;ordinateur portable compac (reseau filaire)
-db 192,168,1,4
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
-db 000h,021h,058h,0FFh,0D6h,020h  ;adresse mac d'origine inconnue
-db 192,168,1,5
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
-db 08Ch,079h,067h,0F3h,04Bh,0D7h  ;ZTE blade 7
-db 192,168,1,6
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
-db 08Ch,089h,0A5h,0CAh,03Bh,0C0h  ;adresse mac inconnue
-db 192,168,1,7
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
-db 0C0h,03Fh,0D5h,0EDh,096h,02Dh  ;adresse mac inconnue
-db 192,168,1,8
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
-db 000h,023h,069h,07Ah,055h,0F9h  ;routeur wifi
-db 192,168,1,9
-db "syst.bin",0,0,0,0,0,0,0,0,0,0,0,0,0,0
+hlen:       ;longeur de l'adresse materiel
+db 0         
+hops:       ;uttilsÃ© par les passerelles intermÃ©diaires
+db 0
+xid:        ;ID de la requete
+dd 0
+secs:       ;seconde Ã©coulÃ© depuis le dÃ©but de la tentative d'amorÃ§age
+dw 0
+flags:      ;flag divers
+dw 0
+ciaddr:     ;adresse IP du client si il la connait
+dd 0
+yiaddr:     ;adresse IP du client determinÃ© par le serveur
+dd 0
+siaddr:     ;adresse ip du serveur (l'adresse de la machine sur laquel est executÃ© ce programme, a modifier si vous voulez l'utiliser sur votre machine)
+dd 0
 
 
 dd 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ;128
